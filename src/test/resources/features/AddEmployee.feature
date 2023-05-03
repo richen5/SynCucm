@@ -7,7 +7,7 @@ Feature: Adding the employee in HRMS Application
     When user clicks on PIM option
     And user clicks on add employee option
 
-  @regression @boss
+  @regression
   Scenario: Adding one employee from feature file
     #Given user is navigated to HRMS application
     And user enters firstName middleName and lastName
