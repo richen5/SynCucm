@@ -12,10 +12,10 @@ public class Hooks extends CommonMethods {
         openBrowserAndLauchApplication();
     }
 
-//    @After
-//    public void end(Scenario scenario){
-//        tearDown();
-//    }
+    @After
+    public void end(Scenario scenario){
+        tearDown();
+    }
 
 }
 
