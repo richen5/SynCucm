@@ -12,7 +12,7 @@ Feature: Adding the employee in HRMS Application
     And user clicks on save button
     Then employee added successfully
 
-    @test
+    @123
     Scenario: Adding one employee using cucumber feature file
       When user enters valid admin credentials
       And user clicks on login button
@@ -23,9 +23,19 @@ Feature: Adding the employee in HRMS Application
       And user clicks on save button
       Then employee added successfully
 
+      @test
       Scenario Outline: Adding multiple employees
         When user enters valid admin credentials
         And user clicks on login button
         Then admin user is successfully logged in
         When user clicks on PIM option
         And user clicks on add employee option
+        And user provides "<firstName>" "<middleName>" and "<lastName>"
+        And user clicks on save button
+        Then employee added successfully
+        Examples:
+        |firstName|middleName|lastName|
+        |Stepan    |UA        |Bandera |
+        |Ivan      |UA        |Mazepa  |
+        |Bogdan    |UA        |Khmelnytskyi|
+        |Ivan      |UA        |Franko      |

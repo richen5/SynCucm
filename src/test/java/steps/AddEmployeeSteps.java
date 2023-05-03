@@ -41,4 +41,12 @@ public class AddEmployeeSteps extends CommonMethods {
         sendText(addEmployeePage.lastNameField, lastNameValue);
     }
 
+    @When("user provides {string} {string} and {string}")
+    public void user_provides_and(String firstName, String middleName, String lastName) {
+        sendText(addEmployeePage.firstNameField, firstName);
+        sendText(addEmployeePage.middleNameField, middleName);
+        sendText(addEmployeePage.lastNameField, lastName);
+
+    }
+
 }
