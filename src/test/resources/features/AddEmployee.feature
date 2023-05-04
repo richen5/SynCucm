@@ -39,3 +39,7 @@ Feature: Adding the employee in HRMS Application
             |Stepan    |UA        |Bandera |
             |Ivan      |UA        |Mazepa  |
             |Ivan      |UA        |Franko  |
+
+          @excel
+          Scenario: Adding multiple employees from excel file
+            When user add multiple employees from excel file using "EmployeeData" sheet and verify the user added

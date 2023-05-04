@@ -17,6 +17,7 @@ public class ExcelReader {
     static Workbook book;
     static Sheet sheet;
 
+    //to open the excel file
     public static void openExcel (String filePath) {
         try {
             FileInputStream fis = new FileInputStream(filePath);
@@ -29,18 +30,22 @@ public class ExcelReader {
         }
     }
 
+    //open the sheet in excel file
     public static void getSheet (String sheetName){
         sheet = book.getSheet(sheetName);
     }
 
+    //it will return the total no. of rows available in the worksheet
     public static int getRowCount(){
         return sheet.getPhysicalNumberOfRows();
     }
 
+    //it will return the total no. of columns in every row
     public static int getColsCount(int rowIndex){
         return sheet.getRow(rowIndex).getPhysicalNumberOfCells();
     }
 
+    //it will return the data from cell in string format
     public static String getCellData(int rowIndex, int colIndex){
         return sheet.getRow(rowIndex).getCell(colIndex).toString();
     }

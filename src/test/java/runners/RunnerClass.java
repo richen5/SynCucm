@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 
         monochrome = true,
 
-        tags = "@boss"
+        tags = "@excel"
 
 //        //html report will  be generated under target folder
 //        plugin = {"html:target/cucumber.html", "pretty", "json:target/cucumber.json",
