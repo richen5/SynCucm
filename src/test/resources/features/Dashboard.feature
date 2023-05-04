@@ -1,6 +1,6 @@
 Feature: Dashboard tabs verification functionality
 
-  @regression @boss
+  @dashboard @boss
   Scenario: Verify dashboard tabs
     When user enters valid admin credentials
     And user clicks on login button

@@ -2,6 +2,7 @@ package steps;
 
 import com.fasterxml.jackson.databind.ser.impl.StringArraySerializer;
 import io.cucumber.java.en.Then;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import pages.DashboardPage;
 import utils.CommonMethods;
@@ -23,9 +24,15 @@ public class DashboardSteps extends CommonMethods {
         ) {
             actualTabs.add(ele.getText());
         }
-        System.out.println(actualTabs);
-        System.out.println(expectedTabs);
-        dashboardPage = new DashboardPage();
+        System.out.println(actualTabs);     //coming from my execution
+        System.out.println(expectedTabs);   //coming from my feature file
+
+    //    dashboardPage = new DashboardPage();
+//  //    Assert.assertArrayEquals(actualTabs, expectedTabs);
+
+        //if assertions is passed it will not give you any information and will execute our code
+        //if assertions is failed it will give you an error with comparison
+        Assert.assertTrue(expectedTabs.equals(actualTabs));
 
     }
 

@@ -12,6 +12,9 @@ public class DashboardPage extends CommonMethods {
     @FindBy(xpath ="//*[@class='menu']/ul/li")
     public List<WebElement> dashboardTabs;
 
+    @FindBy(id="welcome")
+    public WebElement welcomeMessage;
+
     public DashboardPage(){
         PageFactory.initElements(driver, this);
     }
