@@ -20,7 +20,7 @@ Feature: Adding the employee in HRMS Application
       And user clicks on save button
       Then employee added successfully
 
-      @123
+      @screen
       Scenario Outline: Adding multiple employees
         And user provides "<firstName>" "<middleName>" and "<lastName>"
         And user clicks on save button
