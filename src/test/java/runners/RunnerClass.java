@@ -15,10 +15,12 @@ import org.junit.runner.RunWith;
 
         monochrome = true,
 
-        tags = "@screen"
+        tags = "@report",
 
-//        //html report will  be generated under target folder
-//        plugin = {"html:target/cucumber.html", "pretty", "json:target/cucumber.json",
+        //html report will  be generated under target folder
+        plugin = {"html:target/cucumber.html", "pretty", "json:target/cucumber.json"
+        }
+
 //                "rerun:target/failed.txt"
 )
 
