@@ -43,3 +43,17 @@ Feature: Adding the employee in HRMS Application
           @excel
           Scenario: Adding multiple employees from excel file
             When user add multiple employees from excel file using "EmployeeData" sheet and verify the user added
+
+
+  @sql
+  Scenario: Adding one employee using cucumber feature file
+    And user enters "Ostap" "Ostapovich" and "Bandera"
+    And user grabs the employee id
+    And user clicks on save button
+    And user query the database for same employee id
+    Then  user verifies the results
+
+
+
+
+

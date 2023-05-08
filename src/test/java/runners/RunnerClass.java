@@ -15,14 +15,12 @@ import org.junit.runner.RunWith;
 
         monochrome = true,
 
-        tags = "@report",
+        tags = "@sql",
 
         //html report will  be generated under target folder
-        plugin = {"html:target/cucumber.html", "pretty", "json:target/cucumber.json"
+        plugin = {"html:target/cucumber.html", "pretty", "json:target/cucumber.json",
+                "rerun:target/failed.txt"
         }
 
-//                "rerun:target/failed.txt"
 )
-
-
 public class RunnerClass { }
