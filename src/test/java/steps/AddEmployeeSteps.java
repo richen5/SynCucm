@@ -19,11 +19,6 @@ import java.util.Map;
 
 public class AddEmployeeSteps extends CommonMethods {
 
-    String empId;
-    String firstName;
-    String dbFirstName;
-    String dbEmpId;
-
     @When("user clicks on PIM option")
     public void user_clicks_on_pim_option() {
         //older version of writing the code
@@ -140,15 +135,21 @@ public class AddEmployeeSteps extends CommonMethods {
             Thread.sleep(2000);
 
         }
-
     }
+
+
+    // @sql AddEmployee.feature
+    String empId;
+    String firstName;
+    String dbFirstName;
+    String dbEmpId;
 
     @And("user grabs the employee id")
     public void userGrabsTheEmployeeId() {
 
         //information from front-end
-        empId=addEmployeePage.empIDLocator.getAttribute("value");
-        firstName=addEmployeePage.firstNameField.getAttribute("value");
+        empId = addEmployeePage.empIDLocator.getAttribute("value");
+        firstName = addEmployeePage.firstNameField.getAttribute("value");
     }
 
     @And("user query the database for same employee id")
