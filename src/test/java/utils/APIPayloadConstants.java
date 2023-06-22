@@ -18,6 +18,7 @@ public class APIPayloadConstants {
         return createEmployee;
     }
 
+
     //passing the body from json object
     public static String createEmployeePayloadViaJson(){
         JSONObject obj = new JSONObject();
@@ -32,4 +33,19 @@ public class APIPayloadConstants {
         return obj.toString();
     }
 
+
+    // passing the body from polymorphism
+    public static String createEmployeeDynamic
+    (String firstName, String lastName, String middleName,
+     String gender, String dob, String status, String jobTitle){
+        JSONObject obj = new JSONObject();
+        obj.put("emp_firstname", firstName);
+        obj.put("emp_lastname", lastName);
+        obj.put("emp_middle_name", middleName);
+        obj.put("emp_gender", gender);
+        obj.put("emp_birthday", dob);
+        obj.put("emp_status", status);
+        obj.put("emp_job_title", jobTitle);
+        return obj.toString();
+    }
 }

@@ -89,23 +89,22 @@ public class APIWorkflowSteps {
     public void the_retrieved_data_at_object_matches_the_data_used_to_create_the_employee_having_employee_id(String empObject, String resEmpID, DataTable dataTable) {
 
         // data comes from feature file
-        List<Map<String,String>> expectedData = dataTable.asMaps(String.class, String.class);
+        List<Map<String, String>> expectedData = dataTable.asMaps(String.class, String.class);
 
         // data comes from get call body
         Map<String, String> actualData = response.body().jsonPath().get(empObject);
 
-        for (Map<String, String> singlePairOfData :expectedData) {
+        for (Map<String, String> singlePairOfData : expectedData) {
 
             // it will return the set of keys from map
             Set<String> keys = singlePairOfData.keySet();
 
-            for (String key:keys){
+            for (String key : keys) {
                 String exspectedValue = singlePairOfData.get(key);
                 String actualValue = actualData.get(key);
                 Assert.assertEquals(exspectedValue, actualValue);
             }
         }
-
     }
 
     @Given("a request is prepared to created an employee via json payload")
@@ -114,5 +113,16 @@ public class APIWorkflowSteps {
                 header(APIConstants.HEADER_AUTHORIZATION, GenerateTokenSteps.token).
                 body(APIPayloadConstants.createEmployeePayloadViaJson());
 
+    }
+
+    @Given("a request is prepared to create an employee via dynamic payload {string} , {string} , {string} , {string} , {string} , {string} , {string}")
+    public void a_request_is_prepared_to_create_an_employee_via_dynamic_payload
+            (String firstName, String lastName, String middleName,
+             String gender, String dob,
+             String status, String jobTitle) {
+        request = given().header(APIConstants.HEADER_CONTENT_TYPE, APIConstants.HEADER_CONTENT_TYPE_VALUE).
+                header(APIConstants.HEADER_AUTHORIZATION, GenerateTokenSteps.token).
+                body(APIPayloadConstants.createEmployeeDynamic(firstName, lastName,
+                        middleName, gender, dob, status, jobTitle));
     }
 }
