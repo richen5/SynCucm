@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         glue = "APISteps",
         dryRun = false,
         monochrome = true,
-        tags = "@api",
+        tags = "@jsonpayload",
 
         plugin = {"html:target/cucumber.html", "pretty",
                 "json:target/cucumber.json", "rerun:target/failed.txt"

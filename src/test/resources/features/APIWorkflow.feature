@@ -21,3 +21,11 @@ Feature: This feature covers all the API related scenario
       And the retrieved data at "employee" object matches the data used to create the employee having employee id "employee.employee_id"
       |emp_firstname|emp_lastname|emp_middle_name|emp_gender|emp_birthday|emp_status|emp_job_title|
       |Stepan       |Bandera     |ST             |Male      |2009-01-01  |Probation |QA           |
+
+  @jsonpayload
+  Scenario: Adding an employee using json object
+    Given a request is prepared to created an employee via json payload
+    When a POST call is made to create an employee
+    Then the status code for the created employee is 201
+    And the employee created contains key "Message" and value "Employee Created"
+    And the employee id "Employee.employee_id" is stored as a global variable to be used for other calls

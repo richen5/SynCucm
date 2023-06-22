@@ -108,4 +108,11 @@ public class APIWorkflowSteps {
 
     }
 
+    @Given("a request is prepared to created an employee via json payload")
+    public void aRequestIsPreparedToCreatedAnEmployeeViaJsonPayload() {
+        request = given().header(APIConstants.HEADER_CONTENT_TYPE, APIConstants.HEADER_CONTENT_TYPE_VALUE).
+                header(APIConstants.HEADER_AUTHORIZATION, GenerateTokenSteps.token).
+                body(APIPayloadConstants.createEmployeePayloadViaJson());
+
+    }
 }
