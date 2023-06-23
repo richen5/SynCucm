@@ -47,8 +47,7 @@ public class CommonMethods extends PageInitializers {
 
     //method for time
     public static WebDriverWait getWait(){
-        WebDriverWait wait = new WebDriverWait(driver, Constants.EXPLICIT_WAIT);
-        return wait;
+        return new WebDriverWait(driver, Constants.EXPLICIT_WAIT);
     }
 
 
@@ -63,8 +62,7 @@ public class CommonMethods extends PageInitializers {
     }
 
     public static JavascriptExecutor getJSExecutor(){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        return js;
+        return (JavascriptExecutor) driver;
     }
 
     public static void jsClick (WebElement element){
