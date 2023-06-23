@@ -61,14 +61,6 @@ public class CommonMethods extends PageInitializers {
         element.click();
     }
 
-    public static JavascriptExecutor getJSExecutor(){
-        return (JavascriptExecutor) driver;
-    }
-
-    public static void jsClick (WebElement element){
-        getJSExecutor().executeScript("arguments[0].click();", element);
-    }
-
     public static byte[] takeScreenshot(String fileName){
         TakesScreenshot ts = (TakesScreenshot) driver;
         byte[] picBytes = ts.getScreenshotAs(OutputType.BYTES);
