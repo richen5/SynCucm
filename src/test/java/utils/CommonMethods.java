@@ -4,15 +4,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import steps.PageInitializer;
+import steps.PageInitializers;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,21 +16,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class CommonMethods extends PageInitializer {
+public class CommonMethods extends PageInitializers {
 
     public static WebDriver driver;
 
-    public static void openBrowserAndLaunchApplication(){
-        ConfigReader.readProperties(Constants.CONFIGURATION_FILEPATH);
-        switch (ConfigReader.getPropertyValue("browser")){
+    public void openBrowserAndLauchApplication(){
+        utilis.ConfigReader.readProperties(Constants.CONFIGURATION_FILEPATH);
+        switch (utilis.ConfigReader.getPropertyValue("browser")){
             case "chrome":
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.setHeadless(true);
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver(chromeOptions);
-
-               /* WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();*/
+                driver = new ChromeDriver();
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
@@ -43,11 +34,10 @@ public class CommonMethods extends PageInitializer {
             default:
                 throw new RuntimeException("Invalid browser name");
         }
-
+        driver.get(utilis.ConfigReader.getPropertyValue("url"));
         driver.manage().window().maximize();
-        driver.get(ConfigReader.getPropertyValue("url"));
         driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT, TimeUnit.SECONDS);
-        initializePageObjects();
+        initializePageObjects();       //must be in first method!!
     }
 
     public static void sendText(WebElement element, String textToSend){
@@ -55,11 +45,15 @@ public class CommonMethods extends PageInitializer {
         element.sendKeys(textToSend);
     }
 
+
+    //method for time
     public static WebDriverWait getWait(){
         WebDriverWait wait = new WebDriverWait(driver, Constants.EXPLICIT_WAIT);
         return wait;
     }
 
+
+    //method for condition
     public static void waitForClickability(WebElement element){
         getWait().until(ExpectedConditions.elementToBeClickable(element));
     }
@@ -74,28 +68,23 @@ public class CommonMethods extends PageInitializer {
         return js;
     }
 
-    public static void jsClick(WebElement element){
+    public static void jsClick (WebElement element){
         getJSExecutor().executeScript("arguments[0].click();", element);
     }
 
     //for dropdown selection using text
-    public static void selectDropdown(WebElement element, String text){
-        Select s= new Select(element);
-        s.selectByVisibleText(text);
-    }
+//   public static void selectDropdown(WebElement element, String text){
+//        Select s= new Select(element);
+//        s.selectByVisibleText(text);
 
-
-    //screenshot method
     public static byte[] takeScreenshot(String fileName){
         TakesScreenshot ts = (TakesScreenshot) driver;
         byte[] picBytes = ts.getScreenshotAs(OutputType.BYTES);
         File sourceFile = ts.getScreenshotAs(OutputType.FILE);
 
         try {
-            FileUtils.copyFile(sourceFile, new File(Constants.SCREENSHOT_FILEPATH + fileName + " " +
-                    getTimeStamp("yyyy-MM-dd-HH-mm-ss")+".png"
-            ));
-
+            FileUtils.copyFile(sourceFile, new File(Constants.SCREENSHOT_FILEPATH + fileName
+                    + " " + getTimeStamp("yyyy-MM-dd-HH-mm-ss")+".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -104,13 +93,13 @@ public class CommonMethods extends PageInitializer {
 
     public static String getTimeStamp(String pattern){
         Date date = new Date();
-        //yyyy-mm-dd-hh-mm-ss-ms
-        //to format the date according to out choice we have to use this function
+        //to format the date according to our choice we want to implement in this function
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         return sdf.format(date);
     }
 
-    public static void closeBrowser(){
+
+    public static void tearDown(){
         driver.quit();
     }
 }
