@@ -1,6 +1,5 @@
 package steps;
 
-import com.fasterxml.jackson.databind.ser.impl.StringArraySerializer;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
