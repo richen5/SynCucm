@@ -13,8 +13,10 @@ import org.junit.runner.RunWith;
         glue = "steps",
         dryRun = false,
         monochrome = true,
-        plugin = "pretty"
 
+
+        plugin = {"html:target/cucumber.html", "pretty",
+                "json:target/cucumber.json", "rerun:target/failed.txt"
+        }
 )
-public class FailedRunner {
-}
+public class FailedRunner { }

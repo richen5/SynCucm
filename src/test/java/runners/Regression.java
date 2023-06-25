@@ -12,7 +12,11 @@ import org.junit.runner.RunWith;
         glue = "steps",
         dryRun = true,
         monochrome = true,
-        tags = "@regression"
+        tags = "@regression",
 
+
+        plugin = {"html:target/cucumber.html", "pretty",
+                "json:target/cucumber.json", "rerun:target/failed.txt"
+        }
 )
 public class Regression { }
