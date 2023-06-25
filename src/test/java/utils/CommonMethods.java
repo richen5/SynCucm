@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -24,9 +25,19 @@ public class CommonMethods extends PageInitializers {
         utilis.ConfigReader.readProperties(Constants.CONFIGURATION_FILEPATH);
         switch (utilis.ConfigReader.getPropertyValue("browser")){
             case "chrome":
+
+                // ! chrome for Jenkins !
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.setHeadless(true);
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(chromeOptions);
+
+                // chrome for Cucumber !
+//                WebDriverManager.chromedriver().setup();
+//                driver = new ChromeDriver();
+
                 break;
+
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
@@ -71,11 +82,6 @@ public class CommonMethods extends PageInitializers {
     public static void jsClick (WebElement element){
         getJSExecutor().executeScript("arguments[0].click();", element);
     }
-
-    //for dropdown selection using text
-//   public static void selectDropdown(WebElement element, String text){
-//        Select s= new Select(element);
-//        s.selectByVisibleText(text);
 
     public static byte[] takeScreenshot(String fileName){
         TakesScreenshot ts = (TakesScreenshot) driver;
