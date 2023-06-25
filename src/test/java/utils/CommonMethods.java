@@ -27,14 +27,14 @@ public class CommonMethods extends PageInitializers {
             case "chrome":
 
                 // ! chrome for Jenkins !
-//                ChromeOptions chromeOptions = new ChromeOptions();
-//                chromeOptions.setHeadless(true);
-//                WebDriverManager.chromedriver().setup();
-//                driver = new ChromeDriver(chromeOptions);
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.setHeadless(true);
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver(chromeOptions);
 
                 // chrome for Cucumber !
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+//                WebDriverManager.chromedriver().setup();
+//                driver = new ChromeDriver();
 
                 break;
 

@@ -11,9 +11,9 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/",
         glue = "steps",
         dryRun = false,
-        monochrome = false,
+        monochrome = true,
 
-        tags = "@sql",
+        tags = "@db",
 
         plugin = {"html:target/cucumber.html", "pretty",
                 "json:target/cucumber.json", "rerun:target/failed.txt"
